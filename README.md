@@ -64,6 +64,34 @@ This included checking:
 
 A change log was maintained to document the transformations performed during the cleaning process and provide traceability between the original and cleaned data.
 
+## Validation Results
+
+The cleaned dataset was subjected to a series of integrity and completeness checks to confirm that the cleaning process produced a reliable dataset.
+
+Key validation outcomes included:
+
+- Order IDs were checked for uniqueness, with no duplicate Order IDs identified.
+- A complete-row check was performed to verify record-level completeness.
+- Required fields were reviewed for completeness and consistency.
+- Data formats and structures were verified following the cleaning process.
+- A change log was maintained to document the transformations performed throughout the cleaning process.
+
+These checks provided evidence that the cleaned dataset was structurally consistent and suitable for subsequent analysis.
+
+## Project Preview
+
+### Validation Summary
+
+The validation stage was used to verify the integrity, completeness, and consistency of the cleaned dataset.
+
+![Validation Summary](screenshots/validation-summary.png)
+
+### Cleaned Dataset
+
+The cleaned dataset represents the final output after applying the documented data cleaning and standardization steps.
+
+![Cleaned Dataset](screenshots/cleaned-data.png)
+
 ## Project Workbook
 
 The accompanying Excel workbook contains the project workflow and supporting documentation, including:
