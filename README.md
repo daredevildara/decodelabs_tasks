@@ -121,3 +121,9 @@ data-cleaning-and-validation/
 ├── Data Cleaning and Validation.xlsx
 ├── README.md
 └── .gitattributes
+
+AUTHOR
+
+OLUWADARASIMI ADEDIJI
+
+DATA ANALYST | DATA ANALYTICS | BUSINESS ANALYTICS
