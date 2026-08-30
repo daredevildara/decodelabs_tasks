@@ -30,7 +30,8 @@ A data preparation and quality-assurance project focused on identifying, investi
 - Documentation of the cleaning process
 
 Project files:
-View Project 1 → 
+
+[View Project 1 -](Project 1)
 
 
 ### Project 2 — Sales Analysis & Exploratory Data Analysis
@@ -62,7 +63,8 @@ A sales analytics project focused on examining transaction patterns, sales perfo
 - Excel PivotTables and visual analysis
 
 Project files:
-View Project 2 →
+
+[View Project 2 →](Project 2)
 
 ### Repository Structure: 
 
