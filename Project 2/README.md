@@ -1,505 +1,539 @@
-PROJECT 2 — EXPLORATORY DATA ANALYSIS
+# Project 2 — Exploratory Data Analysis
 
-Sales & Customer Transaction Analysis
-1. Project Overview
+## Sales & Customer Transaction Analysis
 
-This project applies exploratory data analysis to a cleaned transactional sales dataset containing 1,200 recorded orders. The purpose of the analysis is to move beyond basic reporting and investigate the underlying patterns within transaction value, purchasing behaviour, product contribution, sales performance, acquisition sources, order outcomes, payment methods, coupon usage and relationships between purchasing variables.
+An exploratory analysis of transactional sales data focused on identifying patterns, trends, distributions, purchasing behaviour, and relationships that can support more informed business interpretation.
 
-The analysis was structured around ten business-oriented questions designed to establish a numerical baseline, identify distributional patterns and unusual transactions, evaluate changes in sales performance, understand the contribution of products and channels, and examine relationships within purchasing behaviour.
+---
 
-The analysis was conducted in Excel using descriptive statistics, pivot tables, aggregation, IQR-based outlier analysis, comparative analysis and correlation analysis.
+## 1. Project Overview
 
+This project applies Exploratory Data Analysis (EDA) to a cleaned transactional sales dataset containing 1,200 recorded orders.
 
-2. Business Questions
+The objective was to move beyond basic reporting and investigate the underlying patterns within:
+
+- Transaction value
+- Purchasing behaviour
+- Product performance
+- Sales performance over time
+- Customer activity
+- Referral-source performance
+- Order outcomes
+- Payment methods
+- Coupon usage
+- Relationships between purchasing variables
+
+The analysis was structured around ten business-oriented questions designed to establish a numerical baseline, identify distributional patterns and unusual transactions, evaluate changes in sales performance, understand the contribution of products and acquisition sources, examine order outcomes and payment behaviour, and identify relationships within purchasing variables.
+
+The analysis was conducted in Microsoft Excel using descriptive statistics, PivotTables, aggregation, IQR-based outlier analysis, comparative analysis, and correlation analysis.
+
+---
+
+## 2. Business Questions
 
 The analysis addressed the following questions:
 
-What does a typical transaction look like?
+1. What does a typical transaction look like?
+2. How are order values distributed, and are there unusual orders?
+3. How does sales performance change over time?
+4. Which products drive sales performance?
+5. What does customer purchasing behaviour look like?
+6. Which referral sources perform best?
+7. What is the order status after being placed?
+8. What payment method is used more across sales?
+9. How do coupon-associated orders compare with orders without a coupon?
+10. What meaningful relationships exist between purchasing variables?
 
-How are order values distributed, and are there unusual orders?
+---
 
-How does sales performance change over time?
+## 3. Data & Methodology
 
-Which products drive sales performance?
+The cleaned dataset contains 1,200 transactions across 14 variables:
 
-What does customer purchasing behaviour look like?
+- Order ID
+- Date
+- Customer ID
+- Product
+- Quantity
+- Unit Price
+- Shipping Address
+- Payment Method
+- Order Status
+- Tracking Number
+- Items in Cart
+- Coupon Code
+- Referral Source
+- Total Price
 
-Which referral sources perform best?
+### Analytical Approach
 
-What is the order status after being placed?
+#### Descriptive Statistics
 
-What payment method is used more across sales?
+Mean, median, and count were used to establish the typical transaction profile across Quantity, Unit Price, Items in Cart, and Total Price.
 
-How do coupon-associated orders compare with orders without a coupon?
+#### Distribution & Outlier Analysis
 
-What meaningful relationships exist between purchasing variables?
+The distribution of `TotalPrice` was examined using quartiles and the Interquartile Range (IQR) to identify unusually high-value transactions.
 
+#### Time-Series Aggregation
 
-3. Data & Methodology
+Sales value and order volume were aggregated by year and month to identify changes, peaks, and fluctuations in sales performance over time.
 
-The cleaned dataset contains 
+#### Comparative Categorical Analysis
 
-1,200 recorded orders
+PivotTables were used to compare products, referral sources, order statuses, payment methods, and coupon codes by order volume and recorded sales value.
 
-1,189 unique CustomerIDs
+#### Customer-Frequency Analysis
 
-7 product categories
+`CustomerID` was examined to determine whether customers appeared once or multiple times within the dataset.
 
-5 referral sources
+#### Correlation Analysis
 
-5 payment methods
+Pearson correlation was used to assess relationships between `Quantity`, `ItemsInCart`, and `TotalPrice`.
 
-5 order statuses
+---
 
-4 coupon categories
+# 4. Exploratory Findings
 
-Transaction dates spanning January 2023 – June 2025
+## Q1 — What does a typical transaction look like?
 
-14 variables including Quantity, UnitPrice, ItemsInCart, and TotalPrice
+The dataset contains 1,200 observations across each of the primary numerical purchasing fields examined.
 
-The dataset contains 1,200 observations for each of the primary numerical purchasing fields examined in the descriptive analysis.
+| Statistic | Quantity | Unit Price | Items in Cart |
+|---|---:|---:|---:|
+| Count | 1,200 | 1,200 | 1,200 |
+| Mean | 2.95 | 356.41 | 5.49 |
+| Median | 3.00 | 364.21 | 5.00 |
 
-The exploratory process consisted of:
+The typical transaction involves approximately **3 units**, with the mean quantity of 2.95 being very close to the median of 3. This indicates relatively little separation between the average and central transaction quantity.
 
-Descriptive statistics - Mean, median and count were used to establish the typical transaction profile.
+For Unit Price, the median of **364.21** is slightly higher than the mean of **356.41**. This suggests that lower-priced observations exert some downward influence on the average, making the median a useful representation of the central unit price.
 
-Distribution and outlier analysis - The distribution of TotalPrice was examined using quartiles and the Interquartile Range (IQR) to identify unusually high-value transactions.
+The typical cart contains approximately **5 items**, while the mean of 5.49 is higher than the median of 5. This indicates that some larger carts are increasing the average cart size.
 
-Time-series aggregation - Sales value and order volume were aggregated by month and year to identify changes and fluctuations over time.
+For Total Price, the **median order value of 823.62** provides a more representative view of a typical transaction than the mean of **1,053.97**, because the mean is substantially higher. This difference indicates that higher-value transactions are pulling the average upward.
 
-Comparative categorical analysis - Pivot tables were used to compare products, referral sources, order statuses, payment methods and coupon codes by order volume and/or recorded sales value.
+### Key insight
 
-Customer-frequency analysis - CustomerID was examined to distinguish one-time customers from customers appearing more than once in the dataset.
+The typical transaction is relatively modest in quantity and cart size, but the substantial difference between median and mean order value indicates that transaction values are not evenly distributed. A smaller number of higher-value orders materially influence the overall average.
 
-Correlation analysis - Pearson correlation was used to assess relationships between Quantity, ItemsInCart and TotalPrice.
+---
 
+## Q2 — How are order values distributed, and are there unusual orders?
 
-4. Exploratory Findings
-   
-Q1 — What does a typical transaction look like?
+| Statistic | Total Price |
+|---|---:|
+| Minimum | 11.39 |
+| Q1 | 410.52 |
+| Median | 823.62 |
+| Q3 | 1,578.48 |
+| Maximum | 3,456.40 |
+| IQR | 1,167.96 |
 
-The dataset contains 1,200 transactions, with the following central characteristics:
+The middle 50% of transactions have Total Price values between **410.52 and 1,578.48**.
 
-The median quantity of 3 units is very close to the mean of 2.95, indicating that transaction quantity is relatively concentrated around three units.
+The IQR is **1,167.96**, producing an upper boundary of approximately **3,330.42** and a lower boundary of approximately **-1,341.42**.
 
-For cart size, the median is 5 items, while the mean rises to approximately 5.49, suggesting that larger carts are exerting some upward influence on the average.
+The maximum transaction value of **3,456.40** exceeds the upper IQR boundary, indicating the presence of high-value outliers. The distribution is therefore right-skewed, which is also consistent with the mean order value of 1,053.97 being substantially higher than the median of 823.62.
 
-The relationship between mean and median is particularly informative for TotalPrice. The mean recorded order value is 1,053.97, while the median is considerably lower at 823.62.
+The IQR analysis identifies **eight high-value transactions** above the upper boundary of 3,330.42. These transactions range from **3,334.00 to 3,456.40** and consistently involve five units purchased at relatively high unit prices.
 
-EDA Finding
+Rather than immediately treating these observations as data-quality errors, their underlying values and purchasing characteristics were considered. Their consistent relationship with relatively high unit prices suggests that they may represent legitimate high-value transactions rather than obvious data-entry errors.
 
-A typical transaction involves approximately three units and five items in the cart, with a median recorded order value of 823.62. The substantially higher mean order value of 1,053.97 indicates that higher-value transactions are pulling the average upward, making the median a more representative measure of the central transaction value.
+### Key insight
 
-Analytical interpretation
+The outliers are important because they influence the overall distribution and help explain why the mean order value is considerably higher than the median. They should therefore be retained for analysis while being recognised as unusually high-value transactions.
 
-The distinction between the mean and median establishes an important baseline for the rest of the analysis: the dataset is not characterised by uniformly valued transactions. A relatively typical order sits below the overall average because a smaller number of higher-value transactions increase the mean.
+---
 
-Q2 — How are order values distributed, and are there unusual orders?
+## Q3 — How does sales performance change over time?
 
-The TotalPrice distribution has the following characteristics:
+Annual recorded sales were:
 
-Minimum: 11.39
+| Year | Sales Value | Orders |
+|---|---:|---:|
+| 2023 | 552,643.24 | 510 |
+| 2024 | 480,235.87 | 459 |
+| 2025* | 231,882.85 | 231 |
 
-Q1: 410.52
+\*2025 contains January–June only.
 
-Median: 823.62
+Recorded sales declined from **552,643.24 in 2023 to 480,235.87 in 2024**, representing an approximate **13.1% decrease**.
 
-Q3: 1,578.48
+Order volume also declined from **510 to 459 orders**, a decrease of approximately **10.0%**. Average recorded sales per order decreased more modestly, from approximately **1,083.61 to 1,046.27**.
 
-Maximum: 3,456.40
+This indicates that the 2024 decline was driven primarily by a reduction in order volume, with a smaller contribution from lower average order value.
 
-IQR: 1,167.96
+However, the decline was not consistent throughout each year. Monthly performance fluctuated considerably.
 
-Therefore, the middle 50% of transactions fall between 410.52 and 1,578.48.
+In 2023, notable highs included:
 
-Using the IQR method:
+- **May:** 63,836.84
+- **August:** 54,352.14
+- **October:** 52,607.85
 
-Upper boundary = Q3 + 1.5 × IQR = 3,330.42
+The weakest month was:
 
-Eight transactions exceed this upper boundary.
+- **April:** 27,751.71
 
-These transactions range from 3,334.00 to 3,456.40. Importantly, all eight involve five units, with unit prices ranging from approximately 666.80 to 691.28.
+In 2024, the strongest month was:
 
-EDA Finding
+- **June:** 68,068.54
 
-Order values display substantial variability and a clear right-skewed pattern. The median order value is 823.62, compared with a mean of 1,053.97, while the IQR-based upper boundary of 3,330.42 identifies eight unusually high-value transactions. These transactions range from 3,334.00 to 3,456.40 and consistently involve five units purchased at relatively high unit prices, suggesting that they are legitimate high-value transactions rather than obvious data-entry anomalies.
+while weaker months included:
 
-Analytical interpretation
+- **May:** 27,909.11
+- **August:** 31,991.07
+- **November:** 32,413.76
 
-The outlier analysis therefore does more than identify unusual observations. It provides evidence for why the distribution is skewed. The high-value observations are concentrated at the upper end because the combination of relatively high unit prices and the maximum observed quantity produces substantially larger order values. Consequently, the skew in TotalPrice appears to reflect the structure of the transactions rather than an obvious data-quality problem.
+This indicates that sales performance was characterised more by month-to-month volatility than by a smooth downward trend.
 
-Q3 — How does sales performance change over time?
+### 2025 like-for-like comparison
 
-Recorded sales performance changes substantially across the observation period.
+Because only January–June is represented for 2025, its total should not be compared directly with the full-year figures for 2023 and 2024.
 
-Between 2023 and 2024:
+A like-for-like comparison of January–June 2024 against January–June 2025 shows:
 
-Sales declined by approximately 13.1% from 552,643.24 in 2023 to 480,235.87 in 2024. 
+- Sales declined from **257,059.34 to 231,882.85**, approximately **9.8%**
+- Orders declined from **237 to 231**, approximately **2.5%**
+- Average sales per order declined by approximately **7.5%**
 
-Orders declined by approximately 10.0% from 510 to 459 orders. 
+This suggests that the more recent decline in sales is not being driven primarily by fewer orders. A reduction in the value generated per order also contributes materially to the decline.
 
-Average order value declined by approximately 3.4% from 1,083.61 to 1,046.27.
+### Key insight
 
-This indicates that the 2024 reduction in sales was driven primarily by lower order volume, with a smaller contribution from reduced value per order. However, the monthly data does not show a simple continuous decline.
+The analysis distinguishes between changes in **order volume** and changes in **value per order**. The 2024 decline was primarily volume-driven, whereas the January–June 2025 comparison indicates a much smaller decline in order count alongside a more pronounced reduction in average sales per order.
 
-Examples include:
+---
 
-May 2023: 63,836.84
+## Q4 — Which products drive sales performance?
 
-April 2023: 27,751.71
+| Product | Unit Volume | Sales Value | Avg. Unit Price |
+|---|---:|---:|---:|
+| Chair | 562 | 195,620.11 | 355.66 |
+| Printer | 542 | 195,612.61 | 351.71 |
+| Laptop | 535 | 192,126.56 | 357.71 |
+| Tablet | 497 | 186,568.95 | 367.68 |
+| Monitor | 480 | 175,651.41 | 358.66 |
+| Desk | 508 | 167,459.93 | 329.61 |
+| Phone | 411 | 151,722.39 | 375.22 |
+| **Total** | **3,535** | **1,264,761.96** | **356.41** |
 
-June 2024: 68,068.54
+Product sales are relatively well distributed across the seven categories, although Chair, Printer, and Laptop are the leading contributors to recorded sales value.
 
-May 2024: 27,909.11
+Chair ranks first in both unit volume and sales value, with **562 units** generating **195,620.11** in sales.
 
-The dataset therefore contains considerable month-to-month volatility.
+Printer is virtually tied with Chair in sales value at **195,612.61**, while Laptop follows at **192,126.56**.
 
-For 2025, only January through June are available. A direct comparison with full-year 2023 or 2024 would therefore be inappropriate.
+The analysis also demonstrates that sales value is influenced by both **volume and unit price**.
 
-A like-for-like H1 comparison shows:
+Desk records **508 units** but generates **167,459.93**, partly reflecting its lowest average unit price of **329.61**.
 
-H1 2024 sales: 257,059.34
+Conversely, Phone has the highest average unit price at **375.22**, but also the lowest unit volume at **411**, resulting in the lowest total sales value of **151,722.39**.
 
-H1 2025 sales: 231,882.85
+### Key insight
 
-Sales decline: approximately 9.8%
+A higher unit price does not automatically produce higher total sales. Sales contribution reflects the interaction between **how many units are sold and the value attached to each unit**. Chair demonstrates the strength of volume, while Phone demonstrates how a higher unit price can be offset by lower volume.
 
-Orders: 237 → 231, a decline of only approximately 2.5%
+---
 
-Average order value: 1,084.64 → 1,003.82, a decline of approximately 7.5%
+## Q5 — What does customer purchasing behaviour look like?
 
-EDA Finding
+Customer frequency was examined using `CustomerID` to determine whether the dataset contained repeat customer activity.
 
-Sales performance has declined overall, but the nature of the decline has changed over time. The 2023–2024 reduction was driven primarily by a 10.0% decline in order volume, while average order value fell only modestly. In the more recent H1 2024–H1 2025 comparison, order volume remained relatively stable, declining by only 2.5%, while average order value fell by approximately 7.5%. This indicates that the more recent reduction in recorded sales is increasingly associated with lower value generated per transaction rather than a substantial reduction in the number of orders.
+The analysis identified:
 
-Analytical interpretation
+- **1,200 recorded orders**
+- **1,189 unique customers**
+- **11 customers appearing twice**
 
-The monthly volatility also means that the business should not be characterised as experiencing a smooth downward trend. Performance fluctuates considerably, with strong and weak months occurring throughout the period. The H1 2025 comparison is particularly useful because it separates transaction volume from transaction value. The more recent decline cannot be explained by fewer orders alone.
+This means the dataset contains **1,178 customers represented by one recorded order and 11 customers represented by two recorded orders**.
 
-Q4 — Which products drive sales performance?
+Therefore, the dataset does contain a small amount of repeat-customer activity, but the overwhelming majority of customers appear only once.
 
-Product performance is relatively distributed across the seven categories:
+### Key insight
 
-Chair	
+Repeat purchasing exists in the dataset, but it is limited. The customer structure therefore provides evidence of some repeat activity while also showing that most recorded customers have only one transaction.
 
-Printer	
+The analysis should not be used to make broader conclusions about customer retention, long-term purchasing behaviour, or customer lifetime value because the dataset contains only a limited number of repeat observations.
 
-Laptop	
+---
 
-Tablet	
+## Q6 — Which referral sources perform best?
 
-Monitor	
+| Referral Source | Orders | Sales Value | Avg. Order Value |
+|---|---:|---:|---:|
+| Instagram | 259 | 275,285.45 | 1,062.88 |
+| Email | 250 | 261,808.55 | 1,047.23 |
+| Google | 241 | 250,441.48 | 1,039.18 |
+| Facebook | 228 | 250,410.90 | 1,098.29 |
+| Referral | 222 | 226,815.58 | 1,021.69 |
+| **Total** | **1,200** | **1,264,761.96** | **1,053.97** |
 
-Desk
+The 1,200 recorded orders are distributed relatively evenly across the five referral sources, but their contribution to sales differs slightly.
 
-Phone	
+Instagram is the strongest-performing source overall, generating **259 orders (21.58%)** and **275,285.45 in recorded sales (21.77%)**.
 
-Chair leads both unit volume and recorded sales value with 562 orders and 195,620.11 in sales. 
+Its average order value of **1,062.88** indicates that its leading sales position is primarily supported by having the highest order volume rather than the highest-value individual transactions.
 
-Chair, Printer and Laptop collectively contribute approximately 46.1% of total recorded sales value, despite accounting for approximately 46.4% of total unit volume.
+Email ranks second, generating **250 orders (20.83%)** and **261,808.55 in sales (20.70%)**, with an average order value of **1,047.23**.
 
-However, product performance demonstrates why volume alone is insufficient to explain sales value.
+An important comparison appears between Google and Facebook. Google generates more orders:
 
-Desk records 508 units, yet produces 167,459.93 in sales—the second-lowest sales contribution—because it has the lowest average unit price at 329.61.
+- Google: **241 orders**
+- Facebook: **228 orders**
 
-Conversely, Phone has the highest average unit price at 375.22, but the lowest unit volume at 411, resulting in the lowest total sales value of 151,722.39.
+Yet both produce almost identical recorded sales:
 
-EDA Finding
+- Google: **250,441.48**
+- Facebook: **250,410.90**
 
-Product sales are relatively well distributed, with Chair, Printer and Laptop emerging as the strongest contributors to recorded sales value. However, the results demonstrate that sales performance is jointly influenced by purchasing volume and unit price. Phone has the highest average unit price but the lowest sales value because its purchasing volume is also the lowest, while Desk achieves substantially higher volume without translating that volume into equivalent sales value because of its lower unit price.
+This is explained by Facebook having the highest average order value of **1,098.29**, allowing its lower order volume to be offset by greater value per order.
 
-Analytical interpretation
+Referral records the lowest performance across all three measures:
 
-This establishes a key commercial insight: Higher sales value is not simply a consequence of selling more units or charging a higher price. It is the interaction between both. The product analysis therefore provides context for the later correlation analysis, where cart size also proves insufficient to explain order value by itself.
+- **222 orders (18.50%)**
+- **226,815.58 in sales (17.93%)**
+- **1,021.69 average order value**
 
-Q5 — What does customer purchasing behaviour look like?
+### Key insight
 
-Customer frequency was examined using CustomerID.
+Referral-source performance changes depending on the metric used. Instagram leads in overall sales and order volume, while Facebook generates the **highest value per order**. This distinction is important because the source generating the most transactions is not necessarily the source generating the highest-value transactions.
 
-The dataset contains:
+---
 
-1,200 recorded orders
+## Q7 — What is the order status after being placed?
 
-1,189 unique customers
+| Order Status | Orders | Sales Value |
+|---|---:|---:|
+| Cancelled | 250 | 276,396.21 |
+| Returned | 247 | 243,277.70 |
+| Pending | 237 | 256,328.15 |
+| Shipped | 235 | 246,159.58 |
+| Delivered | 231 | 242,600.32 |
+| **Total** | **1,200** | **1,264,761.96** |
 
-1,178 customers appearing once
+The distribution across order statuses is relatively even, but cancelled and returned orders together account for **497 of 1,200 orders (41.42%)**.
 
-11 customers appearing twice
+Cancelled orders represent the largest individual status category, with **250 orders** and **276,396.21** in recorded sales value.
 
-Therefore, approximately 99.1% of customers appear once, while approximately 0.9% appear more than once within the dataset.
+Delivered orders represent the smallest category, with **231 orders** and **242,600.32** in recorded sales value.
 
-The 11 repeat customers account for:
+This means a substantial proportion of recorded order activity is associated with orders that are not currently classified as delivered.
 
-22 orders
+However, the recorded sales values attached to each status should not automatically be interpreted as realised revenue or revenue loss. The dataset does not establish whether cancelled or returned orders resulted in actual financial loss.
 
-1.8% of all recorded orders
+### Key insight
 
-Approximately 19,535.78 in recorded sales
+The order-status distribution highlights a substantial share of transactions outside the delivered category, particularly cancelled and returned orders. This makes order fulfilment and post-purchase outcomes an important area for further investigation, while avoiding unsupported assumptions about financial impact.
 
-Approximately 1.5% of total recorded sales value
+---
 
-The average order value among these repeat-customer transactions is approximately 887.99, compared with approximately 1,057.07 among one-time-customer transactions.
+## Q8 — What payment method is used more across sales?
 
-EDA Finding
+| Payment Method | Orders | Sales Value |
+|---|---:|---:|
+| Online | 258 | 262,442.94 |
+| Cash | 246 | 259,786.29 |
+| Credit Card | 234 | 263,847.63 |
+| Debit Card | 232 | 232,361.18 |
+| Gift Card | 230 | 246,323.92 |
+| **Total** | **1,200** | **1,264,761.96** |
 
-Customer activity is overwhelmingly concentrated among one-time recorded purchasers. Of the 1,189 unique customers, 1,178 appear once, while only 11 customers generate repeat transactions. These repeat customers account for just 22 of the 1,200 recorded orders and approximately 1.5% of recorded sales value. Their lower average order value of approximately 887.99, compared with 1,057.07 among one-time-customer transactions, suggests that the small repeat segment contributes more through additional purchasing frequency than through higher-value individual orders.
+Online is the most frequently used payment method, accounting for **258 orders (21.50%)**.
 
-Analytical interpretation
+However, Credit Card generates the highest recorded sales value at **263,847.63**, despite having only **234 orders (19.50%)**.
 
-The dataset provides evidence of low observed repeat-purchase activity, but not sufficient evidence to calculate long-term customer retention or lifetime value.
+The difference is explained by the higher average order value associated with Credit Card transactions:
 
-Q6 — Which referral sources perform best?
+- Credit Card: approximately **1,127.55**
+- Online: approximately **1,017.22**
 
-Referral activity is relatively evenly distributed across the five sources.
+Debit Card records the lowest sales value at **232,361.18**, despite having **232 orders**.
 
-Instagram	
+### Key insight
 
-Email	
+Payment-method performance differs depending on whether it is assessed by **transaction volume or sales value**.
 
-Google	
+Online is the most frequently used method, but Credit Card generates the greatest recorded sales value because its transactions have a higher average order value.
 
-Facebook	
+---
 
-Referral	
+## Q9 — How do coupon-associated orders compare with orders without a coupon?
 
-Instagram generates the highest order volume at 259 orders, representing 21.58% of recorded orders, and the highest recorded sales value at 275,285.45, while Email follows closely with 250 orders and 261,808.55 in recorded sales. However, An important distinction appears between Google and Facebook, as Google generates 241 orders and 250,441.48 in sales, while Facebook generates only 228 orders, yet produces almost exactly the same sales value—250,410.90.
-This is explained by Facebook's higher average order value of 1,098.29, the highest among all five sources.
+| Coupon Code | Orders | Sales Value |
+|---|---:|---:|
+| FREESHIP | 313 | 335,036.99 |
+| No Coupon | 309 | 322,401.41 |
+| WINTER15 | 292 | 302,483.54 |
+| SAVE10 | 286 | 304,840.02 |
+| **Total** | **1,200** | **1,264,761.96** |
 
-EDA Finding
+Coupon-associated transactions account for **891 of the 1,200 recorded orders (74.25%)** and approximately **942,320.55**, representing **74.50% of total recorded sales value**.
 
-Referral performance is relatively balanced, with Instagram leading overall through the highest order volume and recorded sales value. However, Facebook demonstrates a different strength: despite generating fewer orders than Google, it produces almost identical sales value because its average order value is the highest at 1,098.29. This shows that channel performance differs depending on whether success is evaluated through acquisition volume or transaction value.
+FREESHIP is the most frequently used coupon, with **313 orders** generating **335,036.99** in sales.
 
-Analytical interpretation
+Orders without a coupon account for **309 orders** and **322,401.41** in sales.
 
-There is therefore no single channel that dominates every performance measure. Instagram is strongest for scale. Facebook is strongest for value per transaction.
+FREESHIP orders also have a higher average order value of approximately **1,070.41**, compared with approximately **1,042.21** for orders without a coupon.
 
-Q7 — What is the order status after being placed?
+### Key insight
 
-Order outcomes are relatively evenly distributed:
+Coupon-coded transactions account for the majority of both recorded order volume and recorded sales value. FREESHIP is the most prevalent coupon and is associated with a slightly higher average order value than transactions without a coupon.
 
-Cancelled	
+However, the analysis identifies **association rather than causation**. The dataset does not establish that coupon usage caused the higher sales volume or value.
 
-Returned	
+---
 
-Pending	
+## Q10 — What meaningful relationships exist between purchasing variables?
 
-Shipped	
+| Relationship | Correlation |
+|---|---:|
+| Quantity vs Items in Cart | 0.65 |
+| Items in Cart vs Total Price | 0.39 |
 
-Delivered	
+### Quantity vs Items in Cart
 
-No individual status dominates the dataset. However, the combination of Cancelled and Returned orders is significant: 497 orders and 41.42% of all recorded orders.  Cancelled orders are the largest individual category at 250 orders, while Delivered is the smallest at 231.
+Quantity and Items in Cart have a **moderate positive correlation of 0.65**.
 
-EDA Finding
+This indicates that orders involving larger quantities generally tend to coincide with larger carts.
 
-Order outcomes are relatively evenly distributed, but a substantial 41.42% of recorded orders are classified as either cancelled or returned. Cancelled orders represent the largest individual category at 250 transactions, while delivered orders represent the smallest at 231. The distribution therefore indicates that a considerable proportion of recorded transaction activity does not currently appear in the delivered category.
+Under the corresponding linear model, Quantity explains approximately **42.3% of the variation in Items in Cart**, meaning that the relationship is meaningful but does not account for all observed variation.
 
-Analytical interpretation
+### Items in Cart vs Total Price
 
-This is potentially important from an operational perspective, but the dataset does not justify treating all cancelled or returned order values as lost revenue.
-TotalPrice represents the recorded transaction value associated with an order. It does not establish whether payment was captured, refunded, reversed or recognised as revenue.
-Therefore, the appropriate conclusion is that order outcomes warrant operational attention, not that 519k in sales was necessarily lost.
+Items in Cart and Total Price have a considerably weaker positive correlation of **0.39**.
 
-Q8 — What payment method is used more across sales?
+This indicates that larger carts tend to be associated with higher order values, but cart size alone is not a strong determinant of Total Price.
 
-Payment method usage is also relatively balanced across:
+Items in Cart explains approximately **15.4% of the variation in Total Price** through the linear relationship.
 
-Online	
+Orders with similar numbers of items can therefore have substantially different Total Price values. This suggests that differences in product and unit prices contribute materially to final order value.
 
-Cash	
+### Key insight
 
-Credit Card	
+The relationships demonstrate that purchasing volume and order value are connected, but not interchangeable.
 
-Debit Card	
+A larger cart generally accompanies a greater quantity of items, yet the number of items in a cart alone provides limited explanation for the final order value. Product and price differences therefore remain important components of transaction value.
 
-Gift Card	
+The correlations identify **association, not causation**.
 
-Online is the most frequently used payment method, accounting for 258 orders (21.50%). However, Credit Card generates the highest recorded sales value, despite having fewer transactions:
+---
 
-Credit Card: 234 orders
+# 5. Overall Analytical Insights
 
-Sales value: 263,847.63
+The analysis produced several interconnected findings across the ten questions.
 
-AOV: 1,127.55
+### 1. Transaction values are right-skewed
 
-Online: 258 orders
+The median order value of **823.62** is considerably below the mean of **1,053.97**, while eight transactions exceed the IQR-based upper boundary. Higher-value transactions therefore have a measurable influence on the overall distribution.
 
-Sales value: 262,442.94
+### 2. Sales performance has declined but remains volatile
 
-AOV: 1,017.22
+Annual sales decreased by approximately **13.1% between 2023 and 2024**, with order volume accounting for most of the decline. Monthly results, however, fluctuate considerably rather than following a consistent downward pattern.
 
-Credit Card therefore produces approximately 1,405 more in recorded sales value than Online despite having 24 fewer orders.
-At the other end, Debit Card generates the lowest recorded sales value at 232,361.18, despite having 232 orders.
+### 3. Product performance reflects both volume and price
 
-EDA Finding
+Chair, Printer, and Laptop are the leading sales contributors, while Phone demonstrates that a higher average unit price does not necessarily result in higher total sales when transaction volume is lower.
 
-Online is the most frequently used payment method, with 258 recorded orders, but Credit Card generates the highest recorded sales value at 263,847.63 from only 234 orders. The difference is explained by Credit Card having the highest average order value at approximately 1,127.55, compared with 1,017.22 for Online. Debit Card records a similar transaction volume at 232 orders but produces substantially lower sales value of 232,361.18. Payment-method performance therefore differs depending on whether usage is assessed by transaction frequency or the value of transactions generated.
+### 4. Customer data shows limited repeat activity
 
-Analytical interpretation
+The 1,200 transactions correspond to **1,189 unique customers**, with only **11 customers appearing twice**. This provides evidence of limited repeat purchasing within the observed dataset but does not support broader conclusions about customer retention.
 
-The important distinction is: Most used ≠ highest sales contribution.
-Online is the dominant payment method by transaction count, whereas Credit Card is strongest by recorded sales value because its transactions are, on average, higher in value.
+### 5. Acquisition performance depends on the metric
 
-Q9 — How do coupon-associated orders compare with orders without a coupon?
+Instagram generates the greatest order volume and overall sales, while Facebook produces the highest average order value. This demonstrates why acquisition sources should be evaluated using multiple performance measures rather than a single ranking.
 
-Coupon usage is highly represented in the dataset.
+### 6. Order outcomes warrant attention
 
-Of the 1,200 recorded orders: 891 use a coupon, while 309 use no coupon. 
+Cancelled and returned orders represent **41.42% of recorded transactions**. While the dataset cannot establish the financial impact of these outcomes, their prevalence makes order-status performance a relevant area for further investigation.
 
-Therefore, coupon-associated orders account for 74.25% of recorded transactions. They also account for approximately 942,320.55, or 74.50% of total recorded sales value.
+### 7. Payment-method rankings change depending on the measure
 
-FREESHIP is the most frequently used coupon, with 313 orders generating 335,036.99 in recorded sales. It also produces a higher average order value than transactions without a coupon:
+Online is the most frequently used payment method, whereas Credit Card generates the highest recorded sales value. Transaction volume and transaction value therefore produce different rankings.
 
-FREESHIP AOV: 1,070.41
+### 8. Coupon usage is widespread
 
-No Coupon AOV: 1,043.37
+Coupon-associated transactions represent **74.25% of recorded orders and 74.50% of recorded sales value**. FREESHIP is the most frequently used coupon and has a slightly higher average order value than transactions without a coupon, although the analysis does not establish causation.
 
-EDA Finding
+### 9. Purchasing variables are related, but not sufficient on their own
 
-Coupon-associated transactions account for nearly three-quarters of recorded activity, representing 891 orders (74.25%) and approximately 74.50% of recorded sales value. FREESHIP is the most prevalent coupon, generating 313 orders and 335,036.99 in recorded sales, while also producing a higher average order value than transactions without a coupon. The close alignment between coupon transaction share and sales-value share indicates that coupon-coded orders constitute a major component of the recorded sales activity.
+Quantity and Items in Cart have a moderate positive relationship, while Items in Cart and Total Price have a weaker relationship. This demonstrates that transaction value depends on more than simply the number of items purchased.
 
-Analytical interpretation
+---
 
-There is a clear association between coupon usage and recorded sales activity in this dataset. However, the analysis cannot establish that coupons caused the higher sales volume or value. Customers may have been more likely to use coupons because they were already purchasing, or other factors may influence both coupon usage and transaction value.
+# 6. Analytical Limitations
 
-Q10 — What meaningful relationships exist between purchasing variables?
+Several findings should be interpreted within the limitations of the dataset.
 
-Correlation analysis produced two meaningful relationships:
+- The dataset contains 1,200 recorded transactions and represents a limited observation period.
+- 2025 contains only January–June observations, so it should not be compared directly with full-year figures.
+- Customer frequency is limited, with only 11 customers appearing twice.
+- Order status values do not establish whether cancelled or returned orders resulted in realised financial losses.
+- Coupon analysis demonstrates association but cannot establish causal impact.
+- Correlation measures identify relationships between variables but do not establish causation.
+- The outlier analysis identifies unusual transaction values but does not independently establish whether those transactions are commercially exceptional or anomalous.
 
-Relationship	Correlation
+These limitations were considered when interpreting the findings to avoid extending the analysis beyond what the available data can support.
 
-Quantity vs. ItemsInCart - 0.65
+---
 
-ItemsInCart vs. TotalPrice - 0.39
+# 7. Tools & Techniques
 
-Quantity ↔ ItemsInCart
+**Tools**
 
-The correlation of 0.65 represents a moderate positive relationship. As the quantity purchased increases, the number of items in the cart generally tends to increase as well.
+- Microsoft Excel
+- PivotTables
+- Excel formulas and functions
+- Data aggregation
+- Data visualisation
 
-The corresponding linear model gives an R² of approximately 42.3%, meaning Quantity explains around 42.3% of the observed variation in ItemsInCart under that model.
+**Analytical techniques**
 
-There is still substantial unexplained variation, so the two variables are related but not interchangeable.  
+- Descriptive statistics
+- Mean, median and count
+- Quartile analysis
+- Interquartile Range (IQR)
+- Outlier identification
+- Time-series analysis
+- Comparative categorical analysis
+- Customer-frequency analysis
+- Pearson correlation
+- Business-focused interpretation
 
-ItemsInCart ↔ TotalPrice
+---
 
-The relationship is considerably weaker: r = 0.39
+# 8. Evidence of Analysis
 
-The corresponding R² is approximately 15.4%.
+The supporting Excel workbook contains the underlying calculations, PivotTables, analysis and visual evidence used to produce the findings documented above.
 
-Therefore, only around 15.4% of the variation in TotalPrice is explained by ItemsInCart under the linear model.
+### Workbook
 
-EDA Finding
+[View the EDA workbook →](./EDA.xlsx)
 
-Quantity and cart size demonstrate a moderate positive relationship (r = 0.65), indicating that larger quantities generally coincide with larger carts. However, the relationship between cart size and TotalPrice is substantially weaker (r = 0.39), with ItemsInCart explaining only approximately 15.4% of variation in recorded order value. This demonstrates that the number of items in a cart alone is not a strong determinant of transaction value. Product and unit-price differences materially influence the final value of an order.
+### Analytical Evidence
 
-Analytical interpretation
+The `screenshots` folder contains visual evidence from the analysis:
 
-This reinforces the conclusion from the product analysis. A customer can purchase a relatively large number of items without necessarily generating the highest-value order, while a smaller basket containing higher-priced products can produce substantially greater sales value. Thus, Sales value is not adequately explained by volume alone; the composition and price of the basket also matter.
-The correlations establish association, not causation.
+- [01 — Transaction Profile](./screenshots/01_transaction_profile.png)
+- [02 — Order Value Distribution](./screenshots/02_order_value_distribution.png)
+- [03 — Sales Trend](./screenshots/03_sales_trend.png)
+- [04 — Product Analysis](./screenshots/04_product_analysis.png)
+- [05 — Customer Behaviour](./screenshots/05_customer_behaviour.png)
+- [06 — Referral Sources](./screenshots/06_referral_sources.png)
+- [07 — Order Status](./screenshots/07_order_status.png)
+- [08 — Payment Methods](./screenshots/08_payment_methods.png)
+- [09 — Coupon Analysis](./screenshots/09_coupon_analysis.png)
+- [10 — Purchasing Variable Relationships](./screenshots/10_purchasing_relationships.png)
 
-5. Overall EDA Insights
+---
 
-1. Transaction value is highly variable
+# 9. Conclusion
 
-The median order value of 823.62 sits considerably below the mean of 1,053.97, while eight legitimate high-value transactions exceed the IQR-based upper boundary.
+This analysis demonstrates how exploratory data analysis can move a transactional dataset from simple numerical records to interpretable business information.
 
-The business therefore operates across a wide range of transaction values rather than around a single consistent order size.
+The analysis identified distributional characteristics, high-value transactions, changes in sales performance, differences in product contribution, limited repeat purchasing, variation in acquisition-source performance, order-status patterns, payment-method differences, widespread coupon usage, and relationships between purchasing variables.
 
-2. Sales performance has weakened, but the underlying driver has changed
+More importantly, the analysis distinguishes between what the data demonstrates and what it does not. Relationships are not treated as causal effects, recorded sales values are not automatically treated as realised revenue, and unusual transactions are investigated rather than automatically classified as errors.
 
-The 2023–2024 decline was primarily associated with fewer orders.
-
-The H1 2024–H1 2025 comparison instead shows relatively stable order volume alongside a 7.5% reduction in average order value.
-
-3. Product value is determined by both volume and price
-
-Chair, Printer and Laptop are the strongest sales contributors, but the Phone example demonstrates that high unit price does not guarantee high sales value.
-
-Likewise, Desk demonstrates that relatively strong volume does not necessarily produce equivalent sales when unit price is lower.
-
-4. Customer activity is predominantly one-time within the observed data
-
-With 1,178 of 1,189 customers appearing once, repeat purchasing represents a very small proportion of observed activity.
-
-The result is useful as a behavioural signal, but should not be interpreted as a definitive retention metric because the dataset's observation period limits what can be inferred about longer-term customer relationships.
-
-5. Acquisition channels have different strengths
-
-Instagram generates the most orders and highest overall recorded sales value, while Facebook generates the highest average order value.
-
-This demonstrates why acquisition channels should not be assessed using a single metric.
-
-6. Order outcomes warrant attention
-
-Cancelled and returned orders represent 41.42% of recorded transactions, making order fulfilment and post-purchase outcomes an important operational consideration.
-
-However, recorded order value should not automatically be interpreted as realised revenue.
-
-7. Payment behaviour differs from payment value
-
-Online is the most frequently used payment method, but Credit Card produces the highest sales value because its average transaction value is considerably higher.
-
-Again, volume and value tell different stories.
-
-8. Coupon usage is deeply embedded in recorded sales activity
-
-Coupon-associated transactions account for 74.25% of orders and 74.50% of recorded sales value.
-
-This establishes substantial association, but not causal effectiveness.
-
-9. Basket size alone does not explain order value
-
-The correlation of 0.39 between ItemsInCart and TotalPrice, together with an R² of approximately 15.4%, demonstrates that transaction value depends on more than simply the number of items purchased.
-
-
-6. Business Recommendations
-
-1. Investigate the decline in average order value
-
-The H1 2025 comparison suggests that the recent sales decline is increasingly associated with lower value per transaction rather than substantially lower order volume.
-
-Further analysis should examine product mix, unit prices and basket composition across periods to determine what is reducing order value.
-
-2. Examine cancellation and return drivers
-
-With cancelled and returned transactions accounting for 41.42% of recorded orders, the next level of analysis should investigate which products and customer/order characteristics are associated with unsuccessful outcomes.
-
-This would allow the business to move from identifying the size of the issue to understanding its underlying drivers.
-
-3. Evaluate acquisition channels using multiple performance measures
-
-Instagram demonstrates strength in order volume and total sales value, whereas Facebook generates the highest AOV.
-
-Marketing performance should therefore be evaluated using a combination of volume, sales value and average transaction value, rather than relying on one headline metric.
-
-4. Strengthen customer-level tracking
-
-The dataset shows very limited observed repeat purchasing, with only 11 of 1,189 customers appearing more than once.
-
-A longer customer observation period would allow the business to properly measure repeat-purchase rate, purchase intervals, retention and ultimately customer lifetime value.
-
-5. Examine product mix as a driver of transaction value
-
-Because cart size explains only approximately 15.4% of TotalPrice variation, increasing the number of items in a basket alone may not be sufficient to increase order value.
-
-Further analysis should focus on which products and price combinations appear in higher-value transactions.
-
-6. Evaluate coupon effectiveness beyond transaction counts
-
-Coupon-associated orders make up almost three-quarters of recorded transactions, but their high representation does not establish that coupons caused higher sales.
-
-A more advanced analysis should compare comparable customer/order groups and, where available, examine discount cost, margins and incremental purchasing behaviour before determining whether individual coupon campaigns are commercially effective.
-
-
-7. Conclusion
-
-This exploratory analysis demonstrates that the dataset contains considerably more complexity than its headline sales figure suggests.
-
-The 1,264,761.96 in recorded sales value is generated through a combination of varying order sizes, product prices, purchasing volumes, acquisition sources, payment methods and promotional activity. Sales performance has declined across the observation period, but the underlying pattern has shifted from a primarily volume-driven decline in 2024 toward a more pronounced reduction in average order value in the first half of 2025.
-
-Product analysis similarly shows that neither volume nor price can independently explain sales contribution. Chair, Printer and Laptop collectively account for approximately 46.1% of recorded sales value, while examples such as Phone and Desk demonstrate the different ways that price and volume interact to shape performance.
-
-At the customer level, the dataset is dominated by one-time observed purchases, with only 11 of 1,189 unique customers generating repeat transactions. Referral channels are comparatively balanced, although their strengths differ between scale and transaction value. Meanwhile, the substantial proportion of cancelled and returned orders identifies an important operational area for further investigation.
-
-Finally, correlation analysis reinforces a central conclusion of the EDA: purchasing volume alone does not explain transaction value. With ItemsInCart explaining only approximately 15.4% of TotalPrice variation, the composition and price of the basket remain important factors in understanding sales value.
-
-Overall, the analysis establishes that sales performance is shaped by multiple interacting dimensions rather than a single volume metric. The strongest opportunities for further investigation therefore lie in understanding what drives changes in order value, unsuccessful order outcomes, repeat purchasing and product-level transaction composition.
+The resulting analysis provides a structured evidence base for understanding the dataset and identifying areas that could be explored further through deeper customer, product, operational, or predictive analysis.
