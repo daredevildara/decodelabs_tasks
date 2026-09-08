@@ -375,18 +375,27 @@ The analysis produced several broad observations from the dataset:
 
 The complete SQL queries used for the analysis are available in:
 
-'SQL_Data_Analysis.sql'
+[SQL_Data_Analysis.sql](./SQL_Data_Analysis.sql)
 
 ### Full Report
 
 The detailed project report contains the analytical questions, SQL queries, query-result screenshots, and interpretation of findings.
 
-'Project_3_SQL_Data_Analysis_Report.docx'
+[Project_3_SQL_Data_Analysis_Report.docx](./Project_3_SQL_Data_Analysis_Report.docx)
 
 ### Query Evidence
 
-Screenshots of the SQL query outputs are available in the screenshots/ folder and provide visual evidence of the analysis performed.
+Screenshots of the SQL query outputs are available in the screenshots/ folder and provide visual evidence of the analysis performed:
 
+- [01 - Dataset Overview](./screenshots/01_dataset_overview.JPG)
+- [02 - Product Performance](./screenshots/02_product_performance.JPG)
+- [03 - Customer Behaviour](./screenshots/03_customer_order_behaviour.JPG)
+- [04 - Payment Behaviour](./screenshots/04_payment_behaviour.JPG)
+- [05 - Marketing Referral Sources](./screenshots/05_marketing_referral_sources.JPG)
+- [06 - Marketing Coupon Combination](./screenshots/06_marketing_coupon_combinations.JPG)
+- [07 - Order Status Analysis](./screenshots/07_order_status_analysis.JPG)
+- [08 - Time Analysis Strongest Months](./screenshots/08_time_analysis_strongest_months.JPG)
+- [09 - Time Analysis Weakest Months](./screenshots/09_time_analysis_weakest_months.JPG)
 ---
 
 # Conclusion
