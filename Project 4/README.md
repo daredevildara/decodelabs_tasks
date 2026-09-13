@@ -183,7 +183,7 @@ The supporting Excel workbook contains the dashboard visualization, PivotTables,
 
 The screenshots folder contains visual evidence from the analysis:
 
-[View the Dashboard](./sales_performance_dashboard.png)
+[View the Dashboard](./screenshots/sales_performance_dashboard.png)
 
 ## Outcome
 
