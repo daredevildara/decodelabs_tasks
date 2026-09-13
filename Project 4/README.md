@@ -170,6 +170,21 @@ The dashboard was designed around the principle of choosing the visualization ba
 The design was intentionally kept concise to prioritize readability and reduce unnecessary visual elements.
 
 ---
+
+## Evidence of Analysis
+
+The supporting Excel workbook contains the dashboard visualization, PivotTables, analysis, and cleaned dataset used to produce the findings documented above.
+
+### Workbook
+
+[View the Excel workbook →](./Project_4_Sales_Dashboard.xlsx)
+
+### Analytical Evidence
+
+The screenshots folder contains visual evidence from the analysis:
+
+[View the Dashboard](./sales_performance_dashboard.png)
+
 ## Outcome
 
 This project completed the final stage of my Data Analytics internship project sequence.
@@ -178,7 +193,7 @@ Across the four projects, I progressed from preparing and validating raw data, t
 
 Project 4 reinforced the importance of moving beyond producing correct analyses to presenting those analyses in a way that allows the intended audience to quickly understand the underlying business message.
 
-## Files
+## Project Structure
 
 ```text
 Project 4 - Data Visualization/
